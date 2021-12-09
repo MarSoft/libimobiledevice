@@ -275,10 +275,11 @@ LIBIMOBILEDEVICE_API idevice_error_t idevice_get_device_list_extended(idevice_in
 		newlist[newcount]->udid = strdup(dev_list[i].udid);
 		if (dev_list[i].conn_type == CONNECTION_TYPE_USB) {
 			newlist[newcount]->conn_type = CONNECTION_USBMUXD;
-			newlist[newcount]->conn_data = NULL;
+			newlist[newcount]->
+				= NULL;
 		} else if (dev_list[i].conn_type == CONNECTION_TYPE_NETWORK) {
 			newlist[newcount]->conn_type = CONNECTION_NETWORK;
-			size_t addrlen = dev_list[i].conn_data[0];
+			size_t addrlen = ((uint8_t*)dev_list[i].conn_data)[0];
 			newlist[newcount]->conn_data = malloc(addrlen);
 			memcpy(newlist[newcount]->conn_data, dev_list[i].conn_data, addrlen);
 		}
